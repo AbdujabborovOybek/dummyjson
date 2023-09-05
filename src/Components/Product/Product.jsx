@@ -6,10 +6,13 @@ export const Product = memo((data, colomun) => {
   const navigate = useNavigate();
   const width = { width: `calc(100% / ${(colomun = 4)} - 25px)` };
 
-  const getProduct = (id) => navigate(`/product/${id}`);
+  const getProduct = (id) => {
+    navigate(`/product/${id}`);
+    window.scrollTo(0, 0);
+  };
   return (
     <>
-      {data?.data?.products?.map((item, index) => {
+      {data?.data?.products?.map((item) => {
         return (
           <figure
             className="product"

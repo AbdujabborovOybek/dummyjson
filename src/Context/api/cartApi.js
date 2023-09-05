@@ -31,4 +31,4 @@ export const cartApi = createApi({
   }),
 });
 
-export const { useGetMyCartQuery } = cartApi;
+export const { useGetMyCartQuery, useAddProductToCartMutation } = cartApi;

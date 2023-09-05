@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import "./ProductDetail.css";
 import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../Context/api/productApi";
+import { useAddProductToCartMutation } from "../../Context/api/cartApi";
+import { useSelector } from "react-redux";
+import { Product } from "../../Components/Product/Product";
+import { useGetAllProductsQuery } from "../../Context/api/productApi.js";
 
 export const ProductDetail = () => {
+  const user = useSelector((state) => state.user);
   const [showImage, setShowImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data = null } = useGetProductByIdQuery(id);
+  const [addProductToCart] = useAddProductToCartMutation();
+  const { data: products } = useGetAllProductsQuery(8);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -23,7 +30,19 @@ export const ProductDetail = () => {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-    alert(quantity);
+    const item = {
+      userId: user.id,
+      products: [
+        {
+          id,
+          quantity,
+        },
+      ],
+    };
+    const { data, error } = await addProductToCart(item);
+
+    console.log(data);
+    console.log(error);
   };
 
   return (
@@ -89,6 +108,8 @@ export const ProductDetail = () => {
           <button>Add to Cart</button>
         </form>
       </div>
+
+      <Product data={products} />
     </div>
   );
 };
