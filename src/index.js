@@ -5,11 +5,16 @@ import { BrowserRouter } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
 import "./Assets/Global.css";
 
+import { Provider } from "react-redux";
+import { store } from "./Context/store";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <SnackbarProvider maxSnack={3}>
-      <Router />
-    </SnackbarProvider>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <SnackbarProvider maxSnack={3}>
+        <Router />
+      </SnackbarProvider>
+    </BrowserRouter>
+  </Provider>
 );

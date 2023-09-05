@@ -1,21 +1,23 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./Components/Layout/Layout";
+import { Login } from "./Pages/Login/Login";
 
 export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
 
 const Home = () => <h1>Home</h1>;
-const About = () => <h1>About</h1>;
-const Contact = () => <h1>Contact</h1>;
+const Products = () => <h1>Products</h1>;
+const Cart = () => <h1>Cart</h1>;
 const NotFound = () => <h1>404 Not Found</h1>;
