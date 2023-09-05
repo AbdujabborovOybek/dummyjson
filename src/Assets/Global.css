@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  letter-spacing: 0.05rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input[type="button"] {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+:where(button, input[type="button"], input[type="submit"]):active {
+  transform: scale(0.99);
+}
