@@ -1,0 +1,60 @@
+.product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.product:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.product > img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.product > figcaption {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.product > figcaption > h3 {
+  font-size: 20px;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.product > figcaption > h4 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.product > figcaption > h4 > :where(span, i) {
+  font-size: 14px;
+  color: #474747;
+  font-style: normal;
+}
+
+.product_discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: yellow;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px;
+}

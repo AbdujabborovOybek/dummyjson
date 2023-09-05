@@ -27,3 +27,16 @@ button {
 :where(button, input[type="button"], input[type="submit"]):active {
   transform: scale(0.99);
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.page {
+  width: 100%;
+  padding: 3%;
+  display: flex;
+  flex-wrap: wrap;
+}
