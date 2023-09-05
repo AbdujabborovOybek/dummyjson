@@ -3,10 +3,12 @@ import "./Login.css";
 import { useSigninMutation } from "../../Context/api/userApi";
 import { enqueueSnackbar } from "notistack";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [signin] = useSigninMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +20,7 @@ export const Login = () => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data));
     dispatch({ type: "SIGNIN", payload: data });
+    navigate("/");
   };
 
   return (

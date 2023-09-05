@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 
 export const Header = memo(() => {
   const user = useSelector((state) => state.user);
+
+  console.log(user);
+
   return (
     <header className="header">
       <Link to="/">Dummy Shop</Link>
