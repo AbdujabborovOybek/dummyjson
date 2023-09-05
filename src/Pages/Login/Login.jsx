@@ -2,9 +2,11 @@ import React from "react";
 import "./Login.css";
 import { useSigninMutation } from "../../Context/api/userApi";
 import { enqueueSnackbar } from "notistack";
+import { useDispatch } from "react-redux";
 
 export const Login = () => {
   const [signin] = useSigninMutation();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ export const Login = () => {
     enqueueSnackbar("Welcome back! ", { variant: "success" });
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data));
+    dispatch({ type: "SIGNIN", payload: data });
   };
 
   return (

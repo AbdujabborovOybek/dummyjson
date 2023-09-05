@@ -2,15 +2,18 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./Components/Layout/Layout";
 import { Login } from "./Pages/Login/Login";
+import { ProtectedProfile } from "./Components/Profile/Profile";
 
 export const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="products" element={<Products />} />
+        <Route path="login" element={<Login />} />
+        <Route element={<ProtectedProfile />}>
+          <Route path="cart" element={<Cart />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
