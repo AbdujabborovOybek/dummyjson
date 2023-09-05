@@ -18,7 +18,7 @@ export const Home = () => {
 
   return (
     <div className="page home">
-      <Product data={data} />
+      <Product data={data?.products} />
       <Pagenation total={total} />
     </div>
   );

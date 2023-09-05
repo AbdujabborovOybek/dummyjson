@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import "./ProductDetail.css";
 import { useParams } from "react-router-dom";
 import { useGetProductByIdQuery } from "../../Context/api/productApi";
-import { useAddProductToCartMutation } from "../../Context/api/cartApi";
-import { useSelector } from "react-redux";
 import { Product } from "../../Components/Product/Product";
 import { useGetAllProductsQuery } from "../../Context/api/productApi.js";
+import { useDispatch } from "react-redux";
+import { enqueueSnackbar } from "notistack";
 
 export const ProductDetail = () => {
-  const user = useSelector((state) => state.user);
   const [showImage, setShowImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data = null } = useGetProductByIdQuery(id);
-  const [addProductToCart] = useAddProductToCartMutation();
   const { data: products } = useGetAllProductsQuery(8);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -30,19 +29,11 @@ export const ProductDetail = () => {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-    const item = {
-      userId: user.id,
-      products: [
-        {
-          id,
-          quantity,
-        },
-      ],
-    };
-    const { data, error } = await addProductToCart(item);
-
-    console.log(data);
-    console.log(error);
+    const product = JSON.parse(JSON.stringify(data));
+    product.quantity = quantity;
+    if (product.stock < quantity) return alert("Not enough stock");
+    dispatch({ type: "ADD_TO_CART", payload: product });
+    enqueueSnackbar("Product added to cart", { variant: "success" });
   };
 
   return (
@@ -109,7 +100,7 @@ export const ProductDetail = () => {
         </form>
       </div>
 
-      <Product data={products} />
+      <Product data={products?.products} />
     </div>
   );
 };

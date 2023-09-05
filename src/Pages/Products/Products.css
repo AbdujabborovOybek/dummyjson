@@ -1,0 +1,28 @@
+.products {
+  width: 100%;
+  display: flex;
+}
+
+.products_filter {
+  width: 320px;
+  padding-right: 3%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.products_filter > :where(input, select) {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  text-transform: capitalize;
+}
+
+.products_list {
+  width: calc(100% - 320px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 32px;
+}

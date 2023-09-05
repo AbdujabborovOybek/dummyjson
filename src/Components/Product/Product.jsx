@@ -2,9 +2,9 @@ import React, { memo } from "react";
 import "./Product.css";
 import { useNavigate } from "react-router-dom";
 
-export const Product = memo((data, colomun) => {
+export const Product = memo(({ data, colomun = 4 }) => {
   const navigate = useNavigate();
-  const width = { width: `calc(100% / ${(colomun = 4)} - 25px)` };
+  const width = { width: `calc(100% / ${colomun} - 25px)` };
 
   const getProduct = (id) => {
     navigate(`/product/${id}`);
@@ -12,7 +12,7 @@ export const Product = memo((data, colomun) => {
   };
   return (
     <>
-      {data?.data?.products?.map((item) => {
+      {data?.map((item) => {
         return (
           <figure
             className="product"

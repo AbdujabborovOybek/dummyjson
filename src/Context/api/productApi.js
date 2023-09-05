@@ -21,7 +21,37 @@ export const productApi = createApi({
         method: "GET",
       }),
     }),
+
+    // Get all product category path: "/products/categories/:category" (public) (GET)
+    getAllProductCategory: builder.query({
+      query: () => ({
+        url: `/products/categories/`,
+        method: "GET",
+      }),
+    }),
+
+    // Get Search product path: "/products/search?q=phone" (public) (GET)
+    getSearchProduct: builder.query({
+      query: (q) => ({
+        url: `/products/search?q=${q}`,
+        method: "GET",
+      }),
+    }),
+
+    // Get product by category path: "/products/category/:category" (public) (GET)
+    getProductByCategory: builder.query({
+      query: (category = "smartphones") => ({
+        url: `/products/category/${category}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery, useGetProductByIdQuery } = productApi;
+export const {
+  useGetAllProductsQuery,
+  useGetProductByIdQuery,
+  useGetAllProductCategoryQuery,
+  useGetSearchProductQuery,
+  useGetProductByCategoryQuery,
+} = productApi;
